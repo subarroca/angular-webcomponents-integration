@@ -1,3 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<kw-card
+  [theme] = theme
+  (collapsed-changed) = toggleCollapsed($event.detail.value)>
+  <div slot = header>
+    This is the title
+  </div>
+  
+  <div slot = content>
+    <div>
+      <button
+        (click) = "theme = 'tomato'">
+        tomato
+      </button>
+      
+      <button
+        (click) = "theme = ''">
+        none
+      </button>
+    </div>
+    
+    <div>Current: {{theme}}</div>
+  </div>
+
+  <div slot = footer>
+    This is footer
+  </div>
+
+</kw-card>
+
+is collapsed: {{isCollapsed}}

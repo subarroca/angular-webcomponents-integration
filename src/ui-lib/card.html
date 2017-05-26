@@ -1,0 +1,72 @@
+<link rel="import" href="https://polygit.org/components/polymer/polymer-element.html">
+
+<dom-module id='kw-card'>
+  <template>
+    <style>
+       :host {
+        background: turquoise;
+        display: block;
+      }
+
+      [theme=tomato] {
+        background: tomato;
+      }
+    </style>
+
+    <div
+      theme$="{{theme}}">
+
+      <header>
+        <slot name="header"></slot>
+        <button on-click="toggleCollapse">{{collapsedLabel}}</button>
+      </header>
+
+      <div
+        hidden = {{collapsed}}>
+        <slot name="content"></slot>
+        <footer>
+          <slot name="footer"></slot>
+        </footer>
+      </div>
+    </div>
+  </template>
+
+
+
+
+  <script>
+    class Card extends Polymer.Element {
+      static get is() {
+        return 'kw-card';
+      }
+
+      static get properties() {
+        return {
+          collapsedLabel: {
+            type: String,
+            value: 'hide',
+          },
+
+
+          theme: {
+            type: String,
+            value: '',
+          },
+          collapsed: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+            notify:true
+          }
+        };
+      }
+
+      toggleCollapse(e) {
+        this.collapsed = !this.collapsed;
+        this.collapsedLabel = this.collapsed ? 'show':'hide';
+      }
+    }
+
+    customElements.define(Card.is, Card);
+  </script>
+</dom-module>

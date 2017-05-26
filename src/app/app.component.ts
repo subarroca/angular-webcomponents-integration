@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+  theme = '';
+  isCollapsed: boolean;
+
+  toggleCollapsed(isCollapsed: boolean) {
+    this.isCollapsed = isCollapsed;
+  }
 }
